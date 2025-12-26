@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 const footerLinks = {
   company: [
@@ -42,7 +43,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center space-x-2">
+              <Image
+                src="/logo-small.png"
+                alt="3P Trades Logo"
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 3P Trades
               </span>

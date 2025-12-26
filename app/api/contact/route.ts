@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 interface ContactFormData {
   name: string;
@@ -162,20 +161,27 @@ export async function POST(request: NextRequest) {
 
     const { name, email, subject, message } = validation.data;
 
-    const submission = await prisma.contactSubmission.create({
-      data: {
-        name,
-        email,
-        subject,
-        message,
-      },
+    // Log the submission (replace with database storage when configured)
+    const submissionId = `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    console.log("Contact form submission:", {
+      id: submissionId,
+      name,
+      email,
+      subject,
+      message,
+      timestamp: new Date().toISOString(),
     });
+
+    // TODO: Uncomment below when database is configured
+    // const submission = await prisma.contactSubmission.create({
+    //   data: { name, email, subject, message },
+    // });
 
     return NextResponse.json(
       {
         success: true,
         message: "Contact form submitted successfully",
-        id: submission.id
+        id: submissionId
       },
       { status: 201 }
     );
