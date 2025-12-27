@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -90,6 +91,17 @@ export default function AboutPage() {
       <section className="relative py-20 lg:py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
+            {/* Full Logo */}
+            <div className="flex justify-center mb-8">
+              <Image
+                src="/logo.png"
+                alt="3P Trades Logo"
+                width={200}
+                height={200}
+                className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56"
+                priority
+              />
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               About{" "}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
@@ -218,35 +230,42 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section Placeholder */}
+      {/* Leadership Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Leadership</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Meet the talented individuals behind 3P Trades
+              Meet the visionary behind 3P Trades
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <div className="bg-muted/50 rounded-2xl p-12 text-center border border-dashed">
-              <svg
-                className="h-16 w-16 text-muted-foreground/50 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <h3 className="text-xl font-semibold mb-2">Team profiles coming soon</h3>
-              <p className="text-muted-foreground">
-                We&apos;re preparing detailed profiles of our talented team members.
-                Check back soon to learn more about the people who make 3P Trades great.
-              </p>
+            <div className="bg-card rounded-2xl p-8 md:p-12 border shadow-sm">
+              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                {/* Profile Image */}
+                <div className="flex-shrink-0">
+                  <Image
+                    src="/pitamber.png"
+                    alt="Pitamber Tiwari"
+                    width={160}
+                    height={160}
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover"
+                  />
+                </div>
+
+                {/* Bio */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-1">Pitamber Tiwari</h3>
+                  <p className="text-lg text-blue-500 font-medium mb-4">Founder & CEO</p>
+
+                  <p className="text-muted-foreground mb-6">
+                    A seasoned technology leader with over 20 years of experience building enterprise-grade
+                    software solutions. Pitamber founded 3P Trades with a vision to bring AI-first software
+                    development to businesses of all sizes, combining deep technical expertise with a
+                    customer-centric approach.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

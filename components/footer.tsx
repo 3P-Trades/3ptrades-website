@@ -48,8 +48,8 @@ export function Footer() {
               <Image
                 src="/logo-small.png"
                 alt="3P Trades Logo"
-                width={32}
-                height={32}
+                width={50}
+                height={50}
                 className="h-8 w-auto"
               />
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
