@@ -1,4 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+
+// Email address to receive contact form submissions
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "info@3ptrades.com";
+
+// Lazy initialization of Resend client
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new Resend(apiKey);
+}
 
 interface ContactFormData {
   name: string;
@@ -161,21 +174,57 @@ export async function POST(request: NextRequest) {
 
     const { name, email, subject, message } = validation.data;
 
-    // Log the submission (replace with database storage when configured)
+    // Generate submission ID
     const submissionId = `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const timestamp = new Date().toISOString();
+
+    // Log the submission
     console.log("Contact form submission:", {
       id: submissionId,
       name,
       email,
       subject,
       message,
-      timestamp: new Date().toISOString(),
+      timestamp,
     });
 
-    // TODO: Uncomment below when database is configured
-    // const submission = await prisma.contactSubmission.create({
-    //   data: { name, email, subject, message },
-    // });
+    // Send email notification
+    const resend = getResendClient();
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: "3P Trades Contact Form <onboarding@resend.dev>",
+          to: [NOTIFICATION_EMAIL],
+          replyTo: email,
+          subject: `[Contact Form] ${subject}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #0066cc;">New Contact Form Submission</h2>
+              <hr style="border: 1px solid #eee;" />
+
+              <p><strong>From:</strong> ${name}</p>
+              <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+              <p><strong>Subject:</strong> ${subject}</p>
+
+              <h3 style="color: #333;">Message:</h3>
+              <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; white-space: pre-wrap;">${message}</div>
+
+              <hr style="border: 1px solid #eee; margin-top: 30px;" />
+              <p style="color: #666; font-size: 12px;">
+                Submission ID: ${submissionId}<br />
+                Received: ${new Date(timestamp).toLocaleString()}
+              </p>
+            </div>
+          `,
+        });
+        console.log("Email notification sent successfully");
+      } catch (emailError) {
+        // Log email error but don't fail the request
+        console.error("Failed to send email notification:", emailError);
+      }
+    } else {
+      console.log("Email notifications disabled (RESEND_API_KEY not configured)");
+    }
 
     return NextResponse.json(
       {
