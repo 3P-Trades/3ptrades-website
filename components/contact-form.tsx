@@ -1,17 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
   name: string;
   email: string;
   subject: string;
   message: string;
-  // Honeypot field - should remain empty
   website: string;
 }
 
@@ -31,7 +26,6 @@ export function ContactForm() {
     website: "",
   });
 
-  // Track when form was loaded for time-based validation
   const [formLoadTime, setFormLoadTime] = useState<number>(0);
 
   useEffect(() => {
@@ -88,7 +82,6 @@ export function ContactForm() {
         errorMessage: "",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -109,10 +102,10 @@ export function ContactForm() {
 
   if (formState.isSuccess) {
     return (
-      <div className="text-center py-8">
-        <div className="h-16 w-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+      <div className="text-center py-12">
+        <div className="w-16 h-16 bg-amber-500 flex items-center justify-center mx-auto mb-6">
           <svg
-            className="h-8 w-8 text-green-500"
+            className="w-8 h-8 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -125,12 +118,11 @@ export function ContactForm() {
             />
           </svg>
         </div>
-        <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-        <p className="text-muted-foreground mb-6">
-          Thank you for reaching out. We&apos;ll get back to you as soon as possible.
+        <h3 className="text-2xl font-bold text-stone-900 mb-2">Message Sent!</h3>
+        <p className="text-stone-600 mb-8">
+          Thank you for reaching out. We&apos;ll get back to you within 24 hours.
         </p>
-        <Button
-          variant="outline"
+        <button
           onClick={() =>
             setFormState({
               isLoading: false,
@@ -139,16 +131,17 @@ export function ContactForm() {
               errorMessage: "",
             })
           }
+          className="inline-flex items-center gap-2 border-2 border-stone-300 text-stone-700 px-6 py-3 font-medium hover:border-stone-900 transition-colors"
         >
           Send Another Message
-        </Button>
+        </button>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Honeypot field - hidden from users, bots will fill it */}
+      {/* Honeypot field */}
       <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10 overflow-hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input
@@ -162,37 +155,47 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Your name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          disabled={formState.isLoading}
-        />
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-stone-900 mb-2">
+            Name <span className="text-amber-500">*</span>
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            disabled={formState.isLoading}
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-stone-900 mb-2">
+            Email <span className="text-amber-500">*</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="your@email.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            disabled={formState.isLoading}
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
+          />
+        </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="your@email.com"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          disabled={formState.isLoading}
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="subject">Subject</Label>
-        <Input
+      <div>
+        <label htmlFor="subject" className="block text-sm font-medium text-stone-900 mb-2">
+          Subject <span className="text-amber-500">*</span>
+        </label>
+        <input
           id="subject"
           name="subject"
           type="text"
@@ -201,12 +204,15 @@ export function ContactForm() {
           onChange={handleChange}
           required
           disabled={formState.isLoading}
+          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
         />
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
-        <Textarea
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-stone-900 mb-2">
+          Message <span className="text-amber-500">*</span>
+        </label>
+        <textarea
           id="message"
           name="message"
           placeholder="Tell us about your project..."
@@ -214,21 +220,26 @@ export function ContactForm() {
           onChange={handleChange}
           required
           disabled={formState.isLoading}
-          className="min-h-[150px]"
+          rows={6}
+          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50 resize-none"
         />
       </div>
 
       {formState.isError && (
-        <div className="p-4 rounded-lg bg-destructive/10 text-destructive text-sm">
+        <div className="p-4 bg-red-50 border border-red-200 text-red-700 text-sm">
           {formState.errorMessage}
         </div>
       )}
 
-      <Button type="submit" className="w-full" disabled={formState.isLoading}>
+      <button
+        type="submit"
+        disabled={formState.isLoading}
+        className="w-full inline-flex items-center justify-center gap-2 bg-stone-900 text-white px-6 py-4 font-medium hover:bg-stone-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         {formState.isLoading ? (
           <>
             <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4"
+              className="animate-spin h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -249,9 +260,14 @@ export function ContactForm() {
             Sending...
           </>
         ) : (
-          "Send Message"
+          <>
+            Send Message
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </>
         )}
-      </Button>
+      </button>
     </form>
   );
 }

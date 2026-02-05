@@ -4,7 +4,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
 const navLinks = [
@@ -20,98 +19,110 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
+    <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-[#FAFAF8]/95 backdrop-blur supports-[backdrop-filter]:bg-[#FAFAF8]/80">
+      <nav className="container mx-auto flex h-18 items-center justify-between px-6 lg:px-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo-small.png"
             alt="3P Trades Logo"
             width={50}
             height={50}
-            className="h-8 w-auto"
+            className="h-10 w-auto transition-transform group-hover:scale-105"
           />
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            3P Trades
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-tight text-stone-900">
+              3P Trades
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-medium">
+              Software Studio
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
+                "relative px-4 py-2 text-sm font-medium transition-colors",
                 pathname === link.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                  ? "text-amber-600"
+                  : "text-stone-600 hover:text-stone-900"
+              )}
+            >
+              {link.label}
+              {pathname === link.href && (
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-amber-500" />
+              )}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="ml-4 inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-5 py-2.5 text-sm font-medium hover:bg-stone-800 transition-colors"
+          >
+            Start a Project
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 -mr-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <div className="w-6 h-5 relative flex flex-col justify-between">
+            <span className={cn(
+              "w-full h-0.5 bg-stone-900 transition-all duration-300 origin-center",
+              isMobileMenuOpen && "rotate-45 translate-y-2"
+            )} />
+            <span className={cn(
+              "w-full h-0.5 bg-stone-900 transition-all duration-300",
+              isMobileMenuOpen && "opacity-0"
+            )} />
+            <span className={cn(
+              "w-full h-0.5 bg-stone-900 transition-all duration-300 origin-center",
+              isMobileMenuOpen && "-rotate-45 -translate-y-2"
+            )} />
+          </div>
+        </button>
+      </nav>
+
+      {/* Mobile Navigation */}
+      <div className={cn(
+        "md:hidden border-t border-stone-200 bg-[#FAFAF8] overflow-hidden transition-all duration-300",
+        isMobileMenuOpen ? "max-h-96" : "max-h-0"
+      )}>
+        <div className="container mx-auto px-6 py-4 space-y-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                "block py-3 text-base font-medium border-l-2 pl-4 transition-colors",
+                pathname === link.href
+                  ? "border-amber-500 text-stone-900 bg-amber-50/50"
+                  : "border-transparent text-stone-600 hover:text-stone-900 hover:border-stone-300"
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Button asChild>
-            <Link href="/contact">Get Started</Link>
-          </Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <Link
+            href="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block mt-4 bg-stone-900 text-stone-50 px-4 py-3 text-center font-medium"
           >
-            {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </nav>
-
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t bg-background">
-          <div className="container mx-auto px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={cn(
-                  "block py-2 text-sm font-medium transition-colors hover:text-primary",
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button asChild className="w-full mt-4">
-              <Link href="/contact">Get Started</Link>
-            </Button>
-          </div>
+            Start a Project
+          </Link>
         </div>
-      )}
+      </div>
     </header>
   )
 }
