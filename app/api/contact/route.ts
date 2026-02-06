@@ -207,7 +207,7 @@ export async function POST(request: NextRequest) {
     if (resend) {
       try {
         await resend.emails.send({
-          from: "3P Trades Contact Form <onboarding@resend.dev>",
+          from: "3P Trades Contact Form <noreply@contact.3ptrades.com>",
           to: [NOTIFICATION_EMAIL],
           replyTo: email,
           subject: `[Contact Form] ${subject}`,
