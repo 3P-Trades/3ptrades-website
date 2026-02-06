@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
 
 const jobListings = [
   {
@@ -238,183 +237,273 @@ export default async function JobDetailPage({ params }: Props) {
     notFound();
   }
 
+  const otherJobs = jobListings.filter((j) => j.id !== job.id);
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-16 lg:py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Link
-              href="/careers"
-              className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6"
-            >
-              <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Careers
-            </Link>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-                  {job.title}
-                </h1>
-                <div className="flex flex-wrap gap-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500/10 text-blue-500">
-                    {job.department}
-                  </span>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-muted">
-                    {job.location}
-                  </span>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-muted">
-                    {job.type}
-                  </span>
-                </div>
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-6 lg:px-8 relative">
+          {/* Back Link */}
+          <Link
+            href="/careers"
+            className="inline-flex items-center gap-2 text-stone-500 hover:text-stone-900 transition-colors mb-10 group"
+          >
+            <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            <span className="text-sm font-medium">Back to Careers</span>
+          </Link>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-8">
+                <span className="w-12 h-px bg-teal-500" />
+                <span className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
+                  {job.department}
+                </span>
               </div>
-              <Button size="lg" asChild>
-                <Link href={`/contact?subject=Application: ${job.title}`}>
+
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-stone-900 mb-6">
+                {job.title}
+              </h1>
+
+              <p className="text-xl text-stone-600 leading-relaxed mb-8">
+                {job.description}
+              </p>
+
+              {/* Meta Tags */}
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 text-teal-700 text-sm font-medium">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" />
+                  </svg>
+                  {job.department}
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-700 text-sm font-medium">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  {job.location}
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-stone-100 text-stone-700 text-sm font-medium">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {job.type}
+                </span>
+              </div>
+            </div>
+
+            {/* Apply Card */}
+            <div className="relative">
+              <div className="bg-stone-900 text-white p-8 lg:p-10 relative">
+                <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-teal-500" />
+
+                <h3 className="text-2xl font-bold mb-3">Interested in this role?</h3>
+                <p className="text-stone-400 mb-8 leading-relaxed">
+                  Send us your resume and a brief introduction about why you&apos;d be a great fit for the {job.title} position.
+                </p>
+
+                <Link
+                  href={`/contact?subject=Application: ${job.title}`}
+                  className="inline-flex items-center justify-center gap-3 bg-teal-500 text-white px-8 py-4 text-base font-bold hover:bg-teal-400 transition-all group w-full"
+                >
                   Apply Now
+                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-              </Button>
+
+                <div className="absolute bottom-0 right-0 w-8 h-8 bg-teal-500" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Job Details */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-12">
-              {/* Main Content */}
-              <div className="lg:col-span-2 space-y-10">
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">About the Role</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {job.description}
-                  </p>
+      <section className="py-24 lg:py-32">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Main Content */}
+            <div className="lg:col-span-8 space-y-16">
+              {/* Responsibilities */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="w-8 h-px bg-teal-500" />
+                  <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600">
+                    What You&apos;ll Do
+                  </span>
                 </div>
-
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">Responsibilities</h2>
-                  <ul className="space-y-3">
-                    {job.responsibilities.map((item, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <svg
-                          className="h-6 w-6 text-green-500 flex-shrink-0 mt-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-8">
+                  Responsibilities
+                </h2>
+                <div className="space-y-4">
+                  {job.responsibilities.map((item, index) => (
+                    <div key={index} className="flex items-start gap-4 group">
+                      <span className="flex-shrink-0 w-8 h-8 bg-teal-500/10 flex items-center justify-center text-teal-600 font-bold text-sm">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-stone-600 leading-relaxed pt-1">{item}</p>
+                    </div>
+                  ))}
                 </div>
-
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">Requirements</h2>
-                  <ul className="space-y-3">
-                    {job.requirements.map((item, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <svg
-                          className="h-6 w-6 text-blue-500 flex-shrink-0 mt-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {job.niceToHave && (
-                  <div>
-                    <h2 className="text-2xl font-bold mb-4">Nice to Have</h2>
-                    <ul className="space-y-3">
-                      {job.niceToHave.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <svg
-                            className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                          </svg>
-                          <span className="text-muted-foreground">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </div>
 
-              {/* Sidebar */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-24 space-y-6">
-                  <div className="p-6 rounded-2xl border bg-card">
-                    <h3 className="font-semibold text-lg mb-4">Job Overview</h3>
-                    <dl className="space-y-4">
-                      <div>
-                        <dt className="text-sm text-muted-foreground">Department</dt>
-                        <dd className="font-medium">{job.department}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-sm text-muted-foreground">Location</dt>
-                        <dd className="font-medium">{job.location}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-sm text-muted-foreground">Job Type</dt>
-                        <dd className="font-medium">{job.type}</dd>
-                      </div>
-                    </dl>
-                  </div>
+              {/* Requirements */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="w-8 h-px bg-teal-500" />
+                  <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600">
+                    What We&apos;re Looking For
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-8">
+                  Requirements
+                </h2>
+                <div className="space-y-4">
+                  {job.requirements.map((item, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <svg className="w-5 h-5 text-teal-500 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-stone-600 leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                  <div className="p-6 rounded-2xl border bg-card">
-                    <h3 className="font-semibold text-lg mb-4">Ready to Apply?</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Send us your resume and a brief introduction about why you'd be a great fit.
-                    </p>
-                    <Button className="w-full" asChild>
-                      <Link href={`/contact?subject=Application: ${job.title}`}>
-                        Apply Now
-                      </Link>
-                    </Button>
+              {/* Nice to Have */}
+              {job.niceToHave && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="w-8 h-px bg-teal-500" />
+                    <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600">
+                      Bonus Points
+                    </span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-8">
+                    Nice to Have
+                  </h2>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {job.niceToHave.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3 border border-stone-200 p-4">
+                        <svg className="w-5 h-5 text-stone-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+                        </svg>
+                        <span className="text-stone-600 text-sm">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-28 space-y-6">
+                {/* Job Overview */}
+                <div className="border border-stone-200 p-6 relative">
+                  <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-teal-500" />
+                  <h3 className="font-bold text-lg text-stone-900 mb-6">Job Overview</h3>
+                  <dl className="space-y-5">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>
+                      </div>
+                      <div>
+                        <dt className="text-xs uppercase tracking-wider text-stone-500 mb-1">Department</dt>
+                        <dd className="font-medium text-stone-900">{job.department}</dd>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <dt className="text-xs uppercase tracking-wider text-stone-500 mb-1">Location</dt>
+                        <dd className="font-medium text-stone-900">{job.location}</dd>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <dt className="text-xs uppercase tracking-wider text-stone-500 mb-1">Job Type</dt>
+                        <dd className="font-medium text-stone-900">{job.type}</dd>
+                      </div>
+                    </div>
+                  </dl>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Other Jobs Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Other Open Positions</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {jobListings
-                .filter((j) => j.id !== job.id)
-                .slice(0, 4)
-                .map((otherJob) => (
-                  <Link
-                    key={otherJob.id}
-                    href={`/careers/${otherJob.id}`}
-                    className="p-4 rounded-lg border bg-card hover:shadow-md transition-shadow"
-                  >
-                    <h3 className="font-semibold mb-1">{otherJob.title}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {otherJob.department} • {otherJob.location}
-                    </p>
-                  </Link>
-                ))}
-            </div>
+      {/* Other Positions */}
+      <section className="py-24 lg:py-32 bg-stone-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mb-16">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600 mb-4 block">
+              Explore More
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
+              Other open <span className="font-serif italic">positions.</span>
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherJobs.map((otherJob, index) => (
+              <Link
+                key={otherJob.id}
+                href={`/careers/${otherJob.id}`}
+                className="bg-white border border-stone-200 p-6 hover:border-teal-500 transition-all group relative"
+              >
+                <span className="absolute top-5 right-5 text-4xl font-bold text-stone-100 group-hover:text-teal-100 transition-colors">
+                  0{index + 1}
+                </span>
+                <div className="relative">
+                  <span className="text-xs uppercase tracking-wider text-stone-500 bg-stone-100 px-2 py-1 mb-3 inline-block">
+                    {otherJob.department}
+                  </span>
+                  <h3 className="text-lg font-bold text-stone-900 group-hover:text-teal-600 transition-colors mb-2">
+                    {otherJob.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-3 text-sm text-stone-500">
+                    <span className="flex items-center gap-1">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                      </svg>
+                      {otherJob.location}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {otherJob.type}
+                    </span>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-teal-500 group-hover:w-full transition-all duration-300" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

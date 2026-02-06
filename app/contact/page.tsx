@@ -14,7 +14,7 @@ const locations = [
     region: "Round Rock, TX 78665-2240",
     country: "United States",
     email: "info@3ptrades.com",
-    accent: "amber",
+    accent: "teal",
   },
   {
     type: "Regional Office",
@@ -43,20 +43,20 @@ export default function ContactPage() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-8">
-              <span className="w-12 h-px bg-amber-500" />
+              <span className="w-12 h-px bg-teal-500" />
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
                 Contact Us
               </span>
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-stone-900 mb-6">
-              Let&apos;s build something <span className="font-serif italic text-amber-600">remarkable.</span>
+              Let&apos;s build something <span className="font-serif italic text-teal-600">remarkable.</span>
             </h1>
 
             <p className="text-xl text-stone-600 leading-relaxed">
@@ -75,7 +75,7 @@ export default function ContactPage() {
             <div className="lg:col-span-3">
               <div className="bg-white border border-stone-200 p-8 lg:p-12 relative">
                 {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-amber-500" />
+                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-teal-500" />
 
                 <div className="relative">
                   <h2 className="text-2xl font-bold text-stone-900 mb-2">Send us a message</h2>
@@ -95,14 +95,14 @@ export default function ContactPage() {
             <div className="lg:col-span-2 space-y-8">
               {/* Quick Contact */}
               <div className="bg-stone-900 text-white p-8 relative">
-                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-amber-500" />
+                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-teal-500" />
 
                 <h3 className="text-lg font-bold mb-4">Quick Contact</h3>
 
                 <div className="space-y-4">
                   <div>
                     <p className="text-stone-400 text-sm mb-1">Email</p>
-                    <a href="mailto:info@3ptrades.com" className="text-amber-500 hover:text-amber-400 transition-colors">
+                    <a href="mailto:info@3ptrades.com" className="text-teal-500 hover:text-teal-400 transition-colors">
                       info@3ptrades.com
                     </a>
                   </div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 right-0 w-6 h-6 bg-amber-500" />
+                <div className="absolute bottom-0 right-0 w-6 h-6 bg-teal-500" />
               </div>
 
               {/* What to Expect */}
@@ -121,7 +121,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500/10 flex items-center justify-center text-amber-600 font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 bg-teal-500/10 flex items-center justify-center text-teal-600 font-bold text-sm">
                       1
                     </div>
                     <div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500/10 flex items-center justify-center text-amber-600 font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 bg-teal-500/10 flex items-center justify-center text-teal-600 font-bold text-sm">
                       2
                     </div>
                     <div>
@@ -141,7 +141,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-amber-500/10 flex items-center justify-center text-amber-600 font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 bg-teal-500/10 flex items-center justify-center text-teal-600 font-bold text-sm">
                       3
                     </div>
                     <div>
@@ -160,7 +160,7 @@ export default function ContactPage() {
       <section className="py-24 lg:py-32 bg-stone-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-600 mb-4 block">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600 mb-4 block">
               Our Locations
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
@@ -175,14 +175,14 @@ export default function ContactPage() {
             {locations.map((location, index) => (
               <div
                 key={location.city}
-                className={`bg-white border p-8 relative group hover:border-amber-500 transition-colors ${
-                  index === 0 ? "border-amber-500" : "border-stone-200"
+                className={`bg-white border p-8 relative group hover:border-teal-500 transition-colors ${
+                  index === 0 ? "border-teal-500" : "border-stone-200"
                 }`}
               >
                 {/* Type Badge */}
                 <span className={`inline-block px-3 py-1 text-xs uppercase tracking-wider font-medium mb-4 ${
                   index === 0
-                    ? "bg-amber-500 text-white"
+                    ? "bg-teal-500 text-white"
                     : "bg-stone-100 text-stone-600"
                 }`}>
                   {location.type}
@@ -198,7 +198,7 @@ export default function ContactPage() {
 
                 <a
                   href={`mailto:${location.email}`}
-                  className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors"
                 >
                   {location.email}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -208,7 +208,7 @@ export default function ContactPage() {
 
                 {/* Bottom accent */}
                 <div className={`absolute bottom-0 left-0 h-1 transition-all duration-300 ${
-                  index === 0 ? "w-full bg-amber-500" : "w-0 bg-amber-500 group-hover:w-full"
+                  index === 0 ? "w-full bg-teal-500" : "w-0 bg-teal-500 group-hover:w-full"
                 }`} />
               </div>
             ))}

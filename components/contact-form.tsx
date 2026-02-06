@@ -17,6 +17,12 @@ interface FormState {
   errorMessage: string;
 }
 
+function generateChallenge() {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { a, b, answer: a + b };
+}
+
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -27,9 +33,13 @@ export function ContactForm() {
   });
 
   const [formLoadTime, setFormLoadTime] = useState<number>(0);
+  const [challenge, setChallenge] = useState(() => generateChallenge());
+  const [challengeInput, setChallengeInput] = useState("");
+  const [challengeError, setChallengeError] = useState(false);
 
   useEffect(() => {
     setFormLoadTime(Date.now());
+    setChallenge(generateChallenge());
   }, []);
 
   const [formState, setFormState] = useState<FormState>({
@@ -49,6 +59,16 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Validate math challenge
+    if (parseInt(challengeInput, 10) !== challenge.answer) {
+      setChallengeError(true);
+      setChallengeInput("");
+      setChallenge(generateChallenge());
+      return;
+    }
+
+    setChallengeError(false);
+
     setFormState({
       isLoading: true,
       isSuccess: false,
@@ -66,6 +86,8 @@ export function ContactForm() {
           ...formData,
           _formLoadTime: formLoadTime,
           _submitTime: Date.now(),
+          _challengeAnswer: challenge.answer,
+          _challengeInput: parseInt(challengeInput, 10),
         }),
       });
 
@@ -89,6 +111,8 @@ export function ContactForm() {
         message: "",
         website: "",
       });
+      setChallengeInput("");
+      setChallenge(generateChallenge());
       setFormLoadTime(Date.now());
     } catch (error) {
       setFormState({
@@ -103,7 +127,7 @@ export function ContactForm() {
   if (formState.isSuccess) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-amber-500 flex items-center justify-center mx-auto mb-6">
+        <div className="w-16 h-16 bg-teal-500 flex items-center justify-center mx-auto mb-6">
           <svg
             className="w-8 h-8 text-white"
             fill="none"
@@ -158,7 +182,7 @@ export function ContactForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-stone-900 mb-2">
-            Name <span className="text-amber-500">*</span>
+            Name <span className="text-teal-500">*</span>
           </label>
           <input
             id="name"
@@ -169,13 +193,13 @@ export function ContactForm() {
             onChange={handleChange}
             required
             disabled={formState.isLoading}
-            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors disabled:opacity-50"
           />
         </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-stone-900 mb-2">
-            Email <span className="text-amber-500">*</span>
+            Email <span className="text-teal-500">*</span>
           </label>
           <input
             id="email"
@@ -186,14 +210,14 @@ export function ContactForm() {
             onChange={handleChange}
             required
             disabled={formState.isLoading}
-            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
+            className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors disabled:opacity-50"
           />
         </div>
       </div>
 
       <div>
         <label htmlFor="subject" className="block text-sm font-medium text-stone-900 mb-2">
-          Subject <span className="text-amber-500">*</span>
+          Subject <span className="text-teal-500">*</span>
         </label>
         <input
           id="subject"
@@ -204,13 +228,13 @@ export function ContactForm() {
           onChange={handleChange}
           required
           disabled={formState.isLoading}
-          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50"
+          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors disabled:opacity-50"
         />
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-stone-900 mb-2">
-          Message <span className="text-amber-500">*</span>
+          Message <span className="text-teal-500">*</span>
         </label>
         <textarea
           id="message"
@@ -221,8 +245,35 @@ export function ContactForm() {
           required
           disabled={formState.isLoading}
           rows={6}
-          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors disabled:opacity-50 resize-none"
+          className="w-full px-4 py-3 bg-stone-50 border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors disabled:opacity-50 resize-none"
         />
+      </div>
+
+      {/* Bot Protection - Math Challenge */}
+      <div>
+        <label htmlFor="challenge" className="block text-sm font-medium text-stone-900 mb-2">
+          What is {challenge.a} + {challenge.b}? <span className="text-teal-500">*</span>
+        </label>
+        <input
+          id="challenge"
+          name="challenge"
+          type="text"
+          inputMode="numeric"
+          placeholder="Your answer"
+          value={challengeInput}
+          onChange={(e) => {
+            setChallengeInput(e.target.value);
+            setChallengeError(false);
+          }}
+          required
+          disabled={formState.isLoading}
+          className={`w-full max-w-[200px] px-4 py-3 bg-stone-50 border text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors disabled:opacity-50 ${
+            challengeError ? "border-red-400" : "border-stone-200"
+          }`}
+        />
+        {challengeError && (
+          <p className="mt-2 text-sm text-red-600">Incorrect answer. Please try again.</p>
+        )}
       </div>
 
       {formState.isError && (

@@ -49,13 +49,13 @@ export function Navbar() {
               className={cn(
                 "relative px-4 py-2 text-sm font-medium transition-colors",
                 pathname === link.href
-                  ? "text-amber-600"
+                  ? "text-teal-600"
                   : "text-stone-600 hover:text-stone-900"
               )}
             >
               {link.label}
               {pathname === link.href && (
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-amber-500" />
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-teal-500" />
               )}
             </Link>
           ))}
@@ -107,7 +107,7 @@ export function Navbar() {
               className={cn(
                 "block py-3 text-base font-medium border-l-2 pl-4 transition-colors",
                 pathname === link.href
-                  ? "border-amber-500 text-stone-900 bg-amber-50/50"
+                  ? "border-teal-500 text-stone-900 bg-teal-50/50"
                   : "border-transparent text-stone-600 hover:text-stone-900 hover:border-stone-300"
               )}
             >

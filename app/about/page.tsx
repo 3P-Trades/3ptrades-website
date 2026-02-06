@@ -64,7 +64,7 @@ export default function AboutPage() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-stone-900/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 lg:px-8 relative">
@@ -72,14 +72,14 @@ export default function AboutPage() {
             {/* Text */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <span className="w-12 h-px bg-amber-500" />
+                <span className="w-12 h-px bg-teal-500" />
                 <span className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
                   About Us
                 </span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-stone-900 mb-6">
-                Building the future, <span className="font-serif italic text-amber-600">intelligently.</span>
+                Building the future, <span className="font-serif italic text-teal-600">intelligently.</span>
               </h1>
 
               <p className="text-xl text-stone-600 leading-relaxed mb-8">
@@ -115,10 +115,10 @@ export default function AboutPage() {
                   priority
                 />
                 {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-amber-500" />
+                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-teal-500" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-stone-300" />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-amber-500 -z-10" />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-teal-500 -z-10" />
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Mission Text */}
             <div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-600 mb-4 block">
+              <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600 mb-4 block">
                 Our Mission
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-8">
@@ -158,9 +158,9 @@ export default function AboutPage() {
 
             {/* Quote */}
             <div className="bg-stone-900 text-white p-8 lg:p-12 relative">
-              <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-amber-500" />
+              <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-teal-500" />
 
-              <svg className="w-12 h-12 text-amber-500 mb-6" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-12 h-12 text-teal-500 mb-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
 
@@ -172,7 +172,7 @@ export default function AboutPage() {
               </blockquote>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-amber-500 flex items-center justify-center text-stone-900 font-bold text-lg">
+                <div className="w-12 h-12 bg-teal-500 flex items-center justify-center text-stone-900 font-bold text-lg">
                   3P
                 </div>
                 <div>
@@ -181,7 +181,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="absolute bottom-0 right-0 w-8 h-8 bg-amber-500" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 bg-teal-500" />
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function AboutPage() {
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-600 mb-4 block">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600 mb-4 block">
               Our Approach
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
@@ -208,10 +208,10 @@ export default function AboutPage() {
             {pillars.map((pillar, index) => (
               <div
                 key={pillar.title}
-                className="relative border border-stone-200 p-8 bg-white group hover:border-amber-500 transition-colors"
+                className="relative border border-stone-200 p-8 bg-white group hover:border-teal-500 transition-colors"
               >
                 {/* Number */}
-                <span className="absolute top-6 right-6 text-5xl font-bold text-stone-100 group-hover:text-amber-100 transition-colors">
+                <span className="absolute top-6 right-6 text-5xl font-bold text-stone-100 group-hover:text-teal-100 transition-colors">
                   0{index + 1}
                 </span>
 
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-amber-500 group-hover:w-full transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-teal-500 group-hover:w-full transition-all duration-300" />
               </div>
             ))}
           </div>
@@ -232,7 +232,7 @@ export default function AboutPage() {
       <section className="py-24 lg:py-32 bg-stone-900 text-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-500 mb-4 block">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-500 mb-4 block">
               Our Values
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -247,12 +247,12 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <div
                 key={value.title}
-                className="border-l-2 border-stone-700 pl-6 hover:border-amber-500 transition-colors group"
+                className="border-l-2 border-stone-700 pl-6 hover:border-teal-500 transition-colors group"
               >
-                <span className="text-amber-500 font-bold text-sm mb-2 block">
+                <span className="text-teal-500 font-bold text-sm mb-2 block">
                   0{index + 1}
                 </span>
-                <h3 className="font-bold text-lg mb-2 group-hover:text-amber-500 transition-colors">
+                <h3 className="font-bold text-lg mb-2 group-hover:text-teal-500 transition-colors">
                   {value.title}
                 </h3>
                 <p className="text-stone-400 text-sm leading-relaxed">
@@ -268,7 +268,7 @@ export default function AboutPage() {
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-600 mb-4 block">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-600 mb-4 block">
               Leadership
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
@@ -289,13 +289,13 @@ export default function AboutPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-amber-500 -z-10" />
+                <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-teal-500 -z-10" />
               </div>
 
               {/* Bio */}
               <div className="md:col-span-2">
                 <h3 className="text-3xl font-bold text-stone-900 mb-1">Pitamber Tiwari</h3>
-                <p className="text-lg text-amber-600 font-medium mb-6">Founder & CEO</p>
+                <p className="text-lg text-teal-600 font-medium mb-6">Founder & CEO</p>
 
                 <div className="space-y-4 text-stone-600 leading-relaxed">
                   <p>
@@ -339,7 +339,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
-              Ready to work <span className="font-serif italic text-amber-600">with us?</span>
+              Ready to work <span className="font-serif italic text-teal-600">with us?</span>
             </h2>
             <p className="text-xl text-stone-600 mb-12">
               Let&apos;s discuss how we can help bring your ideas to life with our AI-first approach.

@@ -80,6 +80,20 @@ function validateBotProtection(data: Record<string, unknown>): { valid: boolean;
     }
   }
 
+  // Check math challenge
+  const challengeAnswer = data._challengeAnswer;
+  const challengeInput = data._challengeInput;
+
+  if (typeof challengeAnswer !== "number" || typeof challengeInput !== "number") {
+    console.log("Bot detected: missing challenge data");
+    return { valid: false, error: "Unable to process your request" };
+  }
+
+  if (challengeAnswer !== challengeInput) {
+    console.log("Bot detected: challenge mismatch");
+    return { valid: false, error: "Unable to process your request" };
+  }
+
   return { valid: true };
 }
 

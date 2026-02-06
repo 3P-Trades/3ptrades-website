@@ -66,7 +66,7 @@
 
 :root {
   --radius: 0.5rem;
-  /* Industrial Craftsman - Warm slate with copper/amber accent */
+  /* Industrial Craftsman - Clean slate with teal accent (matching logo) */
   --background: #FAFAF8;
   --foreground: #1C1917;
   --card: #FFFFFF;
@@ -79,14 +79,14 @@
   --secondary-foreground: #1C1917;
   --muted: #F5F5F4;
   --muted-foreground: #78716C;
-  --accent: #D97706;
-  --accent-foreground: #FFFBEB;
+  --accent: #0D9488;
+  --accent-foreground: #F0FDFA;
   --destructive: #DC2626;
   --border: #E7E5E4;
   --input: #E7E5E4;
-  --ring: #D97706;
-  --chart-1: #D97706;
-  --chart-2: #0D9488;
+  --ring: #0D9488;
+  --chart-1: #0D9488;
+  --chart-2: #2563EB;
   --chart-3: #7C3AED;
   --chart-4: #2563EB;
   --chart-5: #DC2626;
@@ -97,7 +97,7 @@
   --sidebar-accent: #F5F5F4;
   --sidebar-accent-foreground: #1C1917;
   --sidebar-border: #E7E5E4;
-  --sidebar-ring: #D97706;
+  --sidebar-ring: #0D9488;
 }
 
 .dark {
@@ -113,25 +113,25 @@
   --secondary-foreground: #FAFAF9;
   --muted: #292524;
   --muted-foreground: #A8A29E;
-  --accent: #F59E0B;
+  --accent: #14B8A6;
   --accent-foreground: #0C0A09;
   --destructive: #EF4444;
   --border: #292524;
   --input: #292524;
-  --ring: #F59E0B;
-  --chart-1: #F59E0B;
-  --chart-2: #14B8A6;
+  --ring: #14B8A6;
+  --chart-1: #14B8A6;
+  --chart-2: #3B82F6;
   --chart-3: #8B5CF6;
   --chart-4: #3B82F6;
   --chart-5: #EF4444;
   --sidebar: #1C1917;
   --sidebar-foreground: #FAFAF9;
-  --sidebar-primary: #F59E0B;
+  --sidebar-primary: #14B8A6;
   --sidebar-primary-foreground: #0C0A09;
   --sidebar-accent: #292524;
   --sidebar-accent-foreground: #FAFAF9;
   --sidebar-border: #292524;
-  --sidebar-ring: #F59E0B;
+  --sidebar-ring: #14B8A6;
 }
 
 @layer base {
@@ -322,8 +322,8 @@
 /* Grid pattern background */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(215, 119, 6, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(215, 119, 6, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(13, 148, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 148, 136, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 

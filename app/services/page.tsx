@@ -21,7 +21,7 @@ const services = [
       "LLM fine-tuning & optimization",
       "Agentic workflow systems",
     ],
-    accent: "amber",
+    accent: "teal",
   },
   {
     id: "web-engineering",
@@ -53,7 +53,7 @@ const services = [
       "White-label solutions",
       "BI dashboards & reporting",
     ],
-    accent: "amber",
+    accent: "teal",
   },
   {
     id: "mobile-apps",
@@ -85,7 +85,7 @@ const services = [
       "Machine learning models",
       "Business intelligence",
     ],
-    accent: "amber",
+    accent: "teal",
   },
   {
     id: "cloud-migration",
@@ -121,20 +121,20 @@ export default function ServicesPage() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-8">
-              <span className="w-12 h-px bg-amber-500" />
+              <span className="w-12 h-px bg-teal-500" />
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
                 Our Services
               </span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-stone-900 mb-6">
-              End-to-end solutions, <span className="font-serif italic text-amber-600">engineered for scale.</span>
+              End-to-end solutions, <span className="font-serif italic text-teal-600">engineered for scale.</span>
             </h1>
 
             <p className="text-xl text-stone-600 max-w-2xl leading-relaxed">
@@ -164,7 +164,7 @@ export default function ServicesPage() {
                 <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-2 -mt-12 relative">
                   {service.title}
                 </h2>
-                <span className="text-3xl md:text-4xl font-serif italic text-amber-600 mb-6 block">
+                <span className="text-3xl md:text-4xl font-serif italic text-teal-600 mb-6 block">
                   {service.subtitle}
                 </span>
 
@@ -176,7 +176,7 @@ export default function ServicesPage() {
                 <div className="grid sm:grid-cols-2 gap-4 mb-8">
                   {service.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-stone-700">{feature}</span>
@@ -186,7 +186,7 @@ export default function ServicesPage() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-stone-900 font-medium hover:text-amber-600 transition-colors group"
+                  className="inline-flex items-center gap-2 text-stone-900 font-medium hover:text-teal-600 transition-colors group"
                 >
                   Discuss your project
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -199,7 +199,7 @@ export default function ServicesPage() {
               <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                 <div className="bg-white border border-stone-200 p-8 lg:p-12 relative">
                   {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-amber-500" />
+                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-teal-500" />
 
                   <div className="relative">
                     <h3 className="text-2xl font-bold text-stone-900 mb-4">
@@ -233,7 +233,7 @@ export default function ServicesPage() {
       <section className="py-24 lg:py-32 bg-stone-900 text-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-amber-500 mb-4 block">
+            <span className="text-sm font-medium uppercase tracking-[0.2em] text-teal-500 mb-4 block">
               Our Stack
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -255,7 +255,7 @@ export default function ServicesPage() {
                   {techs.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 bg-stone-800 text-stone-300 text-sm hover:bg-amber-500 hover:text-stone-900 transition-colors cursor-default"
+                      className="px-3 py-1.5 bg-stone-800 text-stone-300 text-sm hover:bg-teal-500 hover:text-stone-900 transition-colors cursor-default"
                     >
                       {tech}
                     </span>
@@ -275,7 +275,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6">
-              Ready to transform <span className="font-serif italic text-amber-600">your business?</span>
+              Ready to transform <span className="font-serif italic text-teal-600">your business?</span>
             </h2>
             <p className="text-xl text-stone-600 mb-12">
               Let&apos;s discuss your project and explore how our services can help you achieve your goals.

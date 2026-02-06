@@ -73,7 +73,7 @@ export function Footer() {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-amber-500 hover:text-stone-900 transition-colors"
+                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-teal-500 hover:text-stone-900 transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-amber-500 hover:text-stone-900 transition-colors"
+                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-teal-500 hover:text-stone-900 transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ export function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-amber-500 hover:text-stone-900 transition-colors"
+                className="w-10 h-10 bg-stone-800 flex items-center justify-center hover:bg-teal-500 hover:text-stone-900 transition-colors"
                 aria-label="Twitter"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -143,7 +143,7 @@ export function Footer() {
                 <div key={location.city}>
                   <span className={`inline-block px-2 py-0.5 text-[10px] uppercase tracking-wider font-medium mb-2 ${
                     location.type === "HQ"
-                      ? "bg-amber-500 text-stone-900"
+                      ? "bg-teal-500 text-stone-900"
                       : "bg-stone-800 text-stone-400"
                   }`}>
                     {location.type}
@@ -152,7 +152,7 @@ export function Footer() {
                   <p className="text-stone-500 text-sm mb-1">{location.country}</p>
                   <a
                     href={`mailto:${location.email}`}
-                    className="text-amber-500 hover:text-amber-400 text-sm transition-colors"
+                    className="text-teal-500 hover:text-teal-400 text-sm transition-colors"
                   >
                     {location.email}
                   </a>
